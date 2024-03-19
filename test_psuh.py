@@ -8,8 +8,18 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # Load the Iris dataset
-iris = pd.read_csv('/home/labsuser/Notebook_into_multi/iris.csv')
+iris = load_iris() #pd.read_csv('/home/labsuser/Notebook_into_multi/iris.csv')
+# Convert feature matrix and target array to a pandas DataFrame
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+iris_df['target'] = iris.target
 
+# Rename columns
+column_names = {'sepal length (cm)': 'sepal_length', 
+                'sepal width (cm)': 'sepal_width', 
+                'petal length (cm)': 'petal_length', 
+                'petal width (cm)': 'petal_width'}
+
+iris_df = iris_df.rename(columns=column_names)
 X = iris[['sepal_length','sepal_width','petal_length','petal_width']].copy()
 y = iris.species
 

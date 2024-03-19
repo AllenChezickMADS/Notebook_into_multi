@@ -14,9 +14,12 @@ def do_regular_iris():
     Action: loads iris data and completes testing
     Output: returns model score
     '''
-    iris = pd.read_csv('/home/labsuser/Notebook_into_multi/iris.csv')
-    X = iris[['sepal_length','sepal_width','petal_length','petal_width']].copy()
-    y = iris.species
+    # Load the Iris dataset
+    iris = load_iris()
+
+    # Extract features (X) and target (y)
+    X = iris.data
+    y = iris.target
 
     # Split the dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -39,7 +42,7 @@ def do_regular_iris():
 
     # Calculate accuracy
     accuracy = accuracy_score(y_test, y_pred)
-    return accuracy 
+    return accuracy
 
 def split_data(data):
     '''
@@ -48,7 +51,7 @@ def split_data(data):
     Output: print statement of both model scores
     '''
     X = data[['sepal_length','sepal_width','petal_length','petal_width']].copy()
-    y = data.species
+    y = data.target
     # Split the dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     # Initialize the StandardScaler

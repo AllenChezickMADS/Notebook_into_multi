@@ -5,11 +5,6 @@ to see how it impacts performance
 from load_data import load_file
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
 from testing import split_data
 from apply_noise import apply_random_noise,apply_uniform_noise
 

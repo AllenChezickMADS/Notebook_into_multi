@@ -47,5 +47,9 @@ def load_file(file_path=None):
         return dataframe
     else:
         print('Using Iris')
-        dataframe = pd.read_csv('/home/labsuser/Notebook_into_multi/iris.csv')
+        get_iris = load_iris() #pd.read_csv('/home/labsuser/Notebook_into_multi/iris.csv')
+        dataframe = pd.DataFrame(data=get_iris.data, columns=get_iris.feature_names)
+        dataframe['target'] = get_iris.target
+        dataframe = dataframe.rename(columns=
+                {k:v for k,v in zip(dataframe.columns,['sepal_length','sepal_width','petal_length','petal_width'])})
         return  dataframe
