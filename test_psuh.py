@@ -1,4 +1,4 @@
-# Import necessary libraries
+'''Orginal Notebook File '''
 import numpy as np
 import pandas as pd  # Ensure pandas is imported
 from sklearn.datasets import load_iris
@@ -42,3 +42,7 @@ y_pred = log_reg.predict(X_test_scaled)
 # Calculate accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
+
+get_noise_type = 'Random'
+
+print(get_noise_type.lower() )

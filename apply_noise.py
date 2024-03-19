@@ -1,24 +1,45 @@
+'''
+This file loads data from different data sources for pipelines
+'''
 import numpy as np
-import pandas as pd  # Ensure pandas is imported
+import pandas as pd
+import re
+def get_columns(data,columns):
+    '''
+    Input:dataframe and list of columns  
+    Action: creates list of indexes based on user input 
+    Output: list of indexes
+    '''
+    print(type(columns),columns)
+    matches = re.findall(r'[0-3]', columns)
+    colsz = [int(i) for i in matches]
 
-print(f'')
+    return colsz
 
 
-def apply_noiseX(df,columns):
-    # Add random noise to sepal_width and petal_width only
-    noise_sepal_width = np.random.uniform(low=0, high=1.0, size=X.shape[0])
-    noise_petal_width = np.random.uniform(low=0, high=1.0, size=X.shape[0])
-    for column in columns:
-        X.loc[:, column] = X[column] + noise_sepal_width
-    X.loc[:, 'petal_width'] = X['petal_width'] + noise_petal_width
-    return noised_df
+def apply_random_noise(data,columns_):
+    '''
+    Input:dataframe and list of columns 
+    Action: applies random noise to specific columns
+    Output:returns noised dataframe 
+    '''    
+    columns = get_columns(data,columns_)
+    for index in columns:
+        noise = np.random.uniform(low=0, high=1.0, size=data.shape[0])
+        data.iloc[:, index] = data.iloc[:, index] + noise
+    return data 
 
 
-def apply_noiseY(df,columns):
-    # Add random noise to sepal_width and petal_width only
-    noise_sepal_width = np.random.uniform(low=0, high=1.0, size=X.shape[0])
-    noise_petal_width = np.random.uniform(low=0, high=1.0, size=X.shape[0])
-
-    X.loc[:, 'sepal_width'] = X['sepal_width'] + noise_sepal_width
-    X.loc[:, 'petal_width'] = X['petal_width'] + noise_petal_width
-    return noised_df
+def apply_uniform_noise(data,columns_):
+    '''
+    Input: dataframe and list of columns
+    Action: applies uniform noise to specific columns
+    Output: returns noised dataframe
+    '''
+    columns = get_columns(data,columns_)
+    for index in columns:
+        mean = data.iloc[:, index].mean()
+        std_dev = data.iloc[:, index].std()
+        noise = np.random.normal(mean, std_dev, len(data))
+        data.iloc[:, index] =data.iloc[:, index] + noise
+    return data 

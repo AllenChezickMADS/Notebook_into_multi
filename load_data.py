@@ -1,8 +1,8 @@
 '''
-This file loads data from different data sources for pipelines
+This file loads iris data and is expandable to load data from different data sources
 '''
 import pandas as pd
-
+from sklearn.datasets import load_iris
 
 def check_type(input_file):
     '''
@@ -46,4 +46,6 @@ def load_file(file_path=None):
             dataframe = pd.read_csv(file_path)
         return dataframe
     else:
-        return 'Using Iris'
+        print('Using Iris')
+        dataframe = pd.read_csv('/home/labsuser/Notebook_into_multi/iris.csv')
+        return  dataframe
