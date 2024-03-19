@@ -10,8 +10,9 @@ def get_columns(data,columns):
     Action: creates list of indexes based on user input 
     Output: list of indexes
     '''
-    print(type(columns),columns)
-    matches = re.findall(r'[0-3]', columns)
+    col_numbers = list(range(0-len(data)-1,1))
+    matches = re.findall(rf'{col_numbers}', columns)
+    print(matches)
     colsz = [int(i) for i in matches]
 
     return colsz
